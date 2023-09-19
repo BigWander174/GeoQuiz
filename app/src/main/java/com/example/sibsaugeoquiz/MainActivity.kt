@@ -2,45 +2,21 @@ package com.example.sibsaugeoquiz
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.sibsaugeoquiz.ui.theme.SibSAUGeoQuizTheme
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import com.example.sibsaugeoquiz.databinding.MainActivityBinding
+import com.example.sibsaugeoquiz.viewModels.MainViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            SibSAUGeoQuizTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        val binding: MainActivityBinding =
+            DataBindingUtil.setContentView(this, R.layout.main_activity)
+        binding.viewModel = viewModel
+        binding.restartButton.setOnClickListener() {
+            finish()
+            startActivity(intent)
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SibSAUGeoQuizTheme {
-        Greeting("Android")
     }
 }
