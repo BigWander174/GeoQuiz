@@ -13,6 +13,11 @@
         android:theme="@style/Theme.SibSAUGeoQuiz"
         tools:targetApi="31">
         <activity
+            android:name=".CheatActivity"
+            android:exported="false"
+            android:label="@string/title_activity_cheat"
+            android:theme="@style/Theme.SibSAUGeoQuiz" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
