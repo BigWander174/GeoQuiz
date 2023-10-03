@@ -6,14 +6,22 @@ import androidx.databinding.ObservableInt
 import androidx.lifecycle.ViewModel
 import com.example.sibsaugeoquiz.model.Quiz
 
+val sharedViewModel: SharedViewModel = SharedViewModel()
+
 class MainViewModel : ViewModel() {
     private var currentQuestionIndex = 0
     public val quiz: Quiz = Quiz()
-    public var rightAnswersCount = ObservableInt(0);
 
+    public var cheatsCount: ObservableInt = ObservableInt()
+    public var rightAnswersCount = ObservableInt(0);
     public val isQuestionAnswered = ObservableBoolean(false)
     public val isNewQuestionAvailable = ObservableBoolean(true)
     public val currentQuestionText = ObservableField(quiz.questions[0].text)
+
+    public val currentQuestionAnswer : Boolean
+        get(){
+            return quiz.questions[currentQuestionIndex].answer
+        }
 
     public fun setAnswer(answer : Boolean)
     {

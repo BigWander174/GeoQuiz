@@ -19,30 +19,30 @@
         tools:context=".MainActivity">
 
         <TextView
-            android:id="@+id/result_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_row="3"
-            android:layout_rowWeight="1"
-            android:layout_column="0"
-            android:layout_columnSpan="2"
-            android:layout_columnWeight="1"
-            android:text="@{`Result` + viewModel.rightAnswersCount + `/` + viewModel.quiz.questions.size()}"
-            android:textSize="34sp"
-            android:visibility="@{viewModel.isNewQuestionAvailable() ? View.GONE : View.VISIBLE}" />
-
-        <TextView
             android:id="@+id/question_text_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_row="0"
             android:layout_rowWeight="1"
             android:layout_column="0"
-            android:layout_columnSpan="2"
+            android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:text="@{viewModel.currentQuestionText}"
             android:textSize="34sp"
             android:visibility="@{viewModel.isNewQuestionAvailable() ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+            android:id="@+id/result_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_row="0"
+            android:layout_rowWeight="1"
+            android:layout_column="1"
+            android:layout_columnSpan="1"
+            android:layout_columnWeight="1"
+            android:text="@{`Result` + viewModel.rightAnswersCount + `/` + viewModel.quiz.questions.size()}"
+            android:textSize="34sp"
+            android:visibility="@{viewModel.isNewQuestionAvailable() ? View.GONE : View.VISIBLE}" />
 
         <Button
             android:id="@+id/restart_button"
@@ -90,6 +90,16 @@
             android:onClick="@{() -> viewModel.getNextQuestion()}"
             android:text="next"
             android:visibility="@{viewModel.isNewQuestionAvailable() ? View.VISIBLE : View.GONE}" />
+
+        <Button
+            android:id="@+id/cheat_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:text="Cheat!"
+            android:visibility="@{(viewModel.isQuestionAnswered() || viewModel.cheatsCount &lt;= 0) ? View.GONE : View.VISIBLE}"/>
 
     </GridLayout>
 
